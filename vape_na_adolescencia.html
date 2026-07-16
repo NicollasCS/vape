@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vape & Adolescentes · Feira de Ciências</title>
+  <!-- Font Awesome 6 (gratuito) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: #0F172A;
+      color: #f1f5f9;
+      overflow-x: hidden;
+    }
+
+    /* scroll suave */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Glassmorphism & cards */
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 2rem;
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.6);
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #7C3AED, #2563EB);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563EB, #7C3AED);
+      border: none;
+      padding: 0.8rem 2.2rem;
+      border-radius: 60px;
+      font-weight: 600;
+      color: white;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 20px -8px rgba(37, 99, 235, 0.4);
+      cursor: pointer;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.03) translateY(-3px);
+      box-shadow: 0 16px 30px -8px #2563EB;
+    }
+
+    /* Hero particles canvas */
+    #particles-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* seções */
+    section {
+      padding: 5rem 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(circle at 20% 30%, #1e2a4a, #0F172A 80%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .hero-text {
+      flex: 1 1 500px;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.8rem, 8vw, 5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-text p {
+      font-size: 1.25rem;
+      color: #cbd5e1;
+      max-width: 550px;
+      margin: 1.5rem 0 2rem;
+    }
+
+    .hero-illustration {
+      flex: 1 1 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 10rem;
+      color: #7C3AED;
+      text-shadow: 0 0 60px rgba(124, 58, 237, 0.3);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+
+    /* Cards impacto */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.8rem;
+      margin-top: 2rem;
+    }
+
+    .impact-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 2rem;
+      padding: 1.8rem 1.2rem;
+      transition: all 0.3s ease;
+      text-align: center;
+      box-shadow: 0 12px 30px -15px rgba(0,0,0,0.5);
+    }
+
+    .impact-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      background: rgba(37, 99, 235, 0.12);
+      border-color: #2563EB;
+      box-shadow: 0 25px 40px -18px #2563EB;
+    }
+
+    .impact-card i {
+      font-size: 2.8rem;
+      background: linear-gradient(135deg, #2563EB, #7C3AED);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.8rem;
+    }
+
+    .impact-card h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .impact-card p {
+      font-size: 0.9rem;
+      color: #94a3b8;
+    }
+
+    /* Timeline metodologia */
+    .timeline {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem 3rem;
+      margin: 2.5rem 0;
+    }
+
+    .timeline-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.02);
+      padding: 1rem 1.8rem;
+      border-radius: 4rem;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.04);
+      min-width: 140px;
+    }
+
+    .timeline-item i {
+      font-size: 2.4rem;
+      color: #7C3AED;
+    }
+
+    /* curiosidades */
+    .curiosidades-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .curio-card {
+      background: rgba(255,255,255,0.02);
+      border-radius: 2rem;
+      padding: 1.8rem 1.2rem;
+      border-left: 4px solid #2563EB;
+      transition: 0.25s ease;
+    }
+
+    .curio-card:hover {
+      background: rgba(37, 99, 235, 0.06);
+      transform: scale(1.01);
+    }
+
+    .curio-card i {
+      color: #7C3AED;
+      font-size: 1.8rem;
+      margin-bottom: 0.6rem;
+    }
+
+    /* gráficos */
+    .chart-container {
+      background: rgba(255,255,255,0.03);
+      border-radius: 2rem;
+      padding: 1.8rem;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.04);
+      margin-top: 2rem;
+    }
+
+    .chart-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    /* footer */
+    footer {
+      background: #0a0f1e;
+      padding: 3rem 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.03);
+      text-align: center;
+    }
+
+    .footer-names {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem 2rem;
+      font-weight: 400;
+      color: #94a3b8;
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    .footer-names span i {
+      margin-right: 6px;
+      color: #2563EB;
+    }
+
+    /* responsivo */
+    @media (max-width: 700px) {
+      .hero-text h1 { font-size: 2.8rem; }
+      .hero-illustration { font-size: 6rem; }
+    }
+
+    /* imagem ilustrativa (substitui ilustração vetorial) */
+    .vape-icon {
+      filter: drop-shadow(0 0 30px #2563EB55);
+    }
+
+    /* scroll revelar */
+    [data-aos] {
+      pointer-events: none;
+    }
+    [data-aos].aos-animate {
+      pointer-events: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <canvas id="particles-canvas"></canvas>
+    <div class="container hero-content">
+      <div class="hero-text" data-aos="fade-up" data-aos-duration="1000">
+        <h1>Os impactos do <span class="gradient-text">Vape</span> na Saúde dos Adolescentes</h1>
+        <p>Conscientização, ciência e prevenção para uma juventude mais saudável.</p>
+        <a href="#introducao" class="btn-primary"><i class="fas fa-arrow-right" style="margin-right: 8px;"></i>Saiba mais</a>
+      </div>
+      <div class="hero-illustration" data-aos="zoom-in" data-aos-delay="200">
+        <i class="fas fa-lungs vape-icon" style="color: #7C3AED;"></i>
+        <i class="fas fa-vr-cardboard" style="font-size: 5rem; margin-left: -2rem; opacity: 0.4; color: #2563EB;"></i>
+      </div>
+    </div>
+    <div style="position:absolute; bottom:0; width:100%; height:80px; background: linear-gradient(to top, #0F172A, transparent); z-index:1;"></div>
+  </section>
+
+  <!-- INTRODUÇÃO -->
+  <section id="introducao" style="background: #0F172A;">
+    <div class="container" data-aos="fade-up">
+      <div class="glass" style="padding: 3rem 2.5rem;">
+        <h2 style="font-size: 2.2rem; margin-bottom: 1.2rem;"><i class="fas fa-quote-left" style="color: #7C3AED; margin-right: 12px;"></i>Introdução</h2>
+        <p style="font-size: 1.15rem; line-height: 1.7; color: #e2e8f0;">
+          O vape, também conhecido como cigarro eletrônico, é um dispositivo utilizado para produzir vapor contendo nicotina e outras substâncias químicas. 
+          Seu uso tem aumentado entre adolescentes devido aos sabores variados, ao design moderno e à influência das redes sociais. 
+          Diante desse crescimento, nosso trabalho buscou investigar os impactos do vape na saúde dos jovens e conscientizar a comunidade escolar sobre seus riscos.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section style="background: #111b32;">
+    <div class="container" data-aos="fade-up">
+      <h2 style="font-size: 2rem; margin-bottom: 1.5rem;"><i class="fas fa-cogs" style="color: #2563EB; margin-right: 14px;"></i>Como funciona o Vape</h2>
+      <div class="glass" style="padding: 2.5rem; display: flex; flex-wrap: wrap; gap: 2rem; align-items: center;">
+        <div style="flex: 2; min-width: 260px;">
+          <p style="line-height: 1.6; color: #cbd5e1;">
+            O vape funciona aquecendo um líquido que é transformado em vapor para ser inalado. Embora muitas pessoas considerem o vape menos prejudicial que o cigarro comum, ele contém nicotina, uma substância que pode causar dependência. Além disso, seu uso frequente pode provocar problemas respiratórios, irritação nos pulmões e outros prejuízos à saúde.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 1rem 2rem; margin-top: 1.8rem; font-size: 0.95rem; background: #1e2a4a; padding: 0.8rem 1.8rem; border-radius: 60px; backdrop-filter: blur(4px);">
+            <span><i class="fas fa-bolt" style="color: #7C3AED;"></i> Bateria</span>
+            <span><i class="fas fa-fire" style="color: #2563EB;"></i> Resistência</span>
+            <span><i class="fas fa-flask" style="color: #7C3AED;"></i> Líquido</span>
+            <span><i class="fas fa-cloud" style="color: #94a3b8;"></i> Vapor</span>
+            <span><i class="fas fa-lungs" style="color: #2563EB;"></i> Pulmões</span>
+          </div>
+        </div>
+        <div style="flex: 1; font-size: 5rem; text-align: center; color: #7C3AED; opacity: 0.7;">
+          <i class="fas fa-arrow-right" style="font-size: 3rem; color: #2563EB;"></i>
+          <i class="fas fa-lungs" style="margin-left: 8px;"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACTOS NA SAÚDE (CARDS) -->
+  <section style="background: #0F172A;">
+    <div class="container" data-aos="fade-up">
+      <h2 style="font-size: 2rem; margin-bottom: 0.8rem;"><i class="fas fa-heartbeat" style="color: #7C3AED; margin-right: 14px;"></i>Impactos na Saúde</h2>
+      <div class="card-grid">
+        <div class="impact-card" data-aos="zoom-in" data-aos-delay="50"><i class="fas fa-lungs"></i><h4>Problemas respiratórios</h4><p>Irritação pulmonar e redução da capacidade respiratória.</p></div>
+        <div class="impact-card" data-aos="zoom-in" data-aos-delay="100"><i class="fas fa-brain"></i><h4>Dependência por nicotina</h4><p>Alta carga aditiva, difícil de abandonar.</p></div>
+        <div class="impact-card" data-aos="zoom-in" data-aos-delay="150"><i class="fas fa-circle-exclamation"></i><h4>Ansiedade</h4><p>Pode desencadear ou agravar quadros ansiosos.</p></div>
+        <div class="impact-card" data-aos="zoom-in" data-aos-delay="200"><i class="fas fa-face-frown"></i><h4>Irritabilidade</h4><p>Alterações de humor e instabilidade emocional.</p></div>
+        <div class="impact-card" data-aos="zoom-in" data-aos-delay="250"><i class="fas fa-heart"></i><h4>Danos cardiovasculares</h4><p>Aumento da pressão e risco cardíaco.</p></div>
+        <div class="impact-card" data-aos="zoom-in" data-aos-delay="300"><i class="fas fa-face-smile"></i><h4>Alterações de humor</h4><p>Oscilações e impacto na saúde mental.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REDES SOCIAIS -->
+  <section style="background: #111b32;">
+    <div class="container" data-aos="fade-right">
+      <div class="glass" style="padding: 2.5rem; display: flex; flex-wrap: wrap; gap: 2rem; align-items: center;">
+        <div style="flex: 1; min-width: 220px;">
+          <h2 style="font-size: 1.8rem;"><i class="fab fa-instagram" style="color: #7C3AED; margin-right: 12px;"></i>Redes Sociais</h2>
+          <p style="line-height: 1.6; color: #cbd5e1; margin-top: 0.8rem;">
+            A adolescência é uma fase importante de desenvolvimento físico e emocional, tornando os jovens mais vulneráveis aos efeitos da nicotina. 
+            Outro fator importante é a influência das redes sociais, que muitas vezes incentivam ou normalizam o uso desses dispositivos.
+          </p>
+        </div>
+        <div style="flex: 1; font-size: 4rem; text-align: center; color: #2563EB;">
+          <i class="fab fa-tiktok"></i> <i class="fab fa-instagram"></i> <i class="fab fa-youtube"></i>
+          <!-- <div style="font-size: 1rem; color: #94a3b8; margin-top: 8px;">influência digital</div> -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METODOLOGIA (timeline) -->
+  <section style="background: #0F172A;">
+    <div class="container" data-aos="fade-up">
+      <h2 style="font-size: 2rem;"><i class="fas fa-microscope" style="color: #7C3AED; margin-right: 14px;"></i>Metodologia</h2>
+      <div class="timeline">
+        <div class="timeline-item" data-aos="flip-up"><i class="fas fa-file-alt"></i><span>Pesquisa científica</span></div>
+        <div class="timeline-item" data-aos="flip-up" data-aos-delay="80"><i class="fas fa-book-open"></i><span>Materiais educativos</span></div>
+        <div class="timeline-item" data-aos="flip-up" data-aos-delay="160"><i class="fas fa-layer-group"></i><span>Organização</span></div>
+        <div class="timeline-item" data-aos="flip-up" data-aos-delay="240"><i class="fas fa-cubes"></i><span>Construção da maquete</span></div>
+      </div>
+      <div class="glass" style="padding: 1.8rem 2.2rem; margin-top: 0.5rem;">
+        <p style="color: #e2e8f0;">Para desenvolver este projeto, realizamos pesquisas em artigos científicos, materiais educativos e fontes confiáveis. Após reunir as informações, organizamos os conteúdos e planejamos a construção da maquete. Utilizamos materiais simples para representar os efeitos do vape no organismo e dividimos as tarefas entre todos os integrantes do grupo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESTATÍSTICAS com Chart.js -->
+  <section style="background: #111b32;">
+    <div class="container" data-aos="fade-up">
+      <h2 style="font-size: 2rem;"><i class="fas fa-chart-line" style="color: #2563EB; margin-right: 14px;"></i>Estatísticas</h2>
+      <div class="chart-grid">
+        <div class="chart-container"><canvas id="chart1"></canvas></div>
+        <div class="chart-container"><canvas id="chart2"></canvas></div>
+        <div class="chart-container"><canvas id="chart3"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CURIOSIDADES -->
+  <section style="background: #0F172A;">
+    <div class="container" data-aos="fade-up">
+      <h2 style="font-size: 2rem; margin-bottom: 1.5rem;"><i class="fas fa-lightbulb" style="color: #7C3AED; margin-right: 14px;"></i>Curiosidades</h2>
+      <div class="curiosidades-grid">
+        <div class="curio-card"><i class="fas fa-flask"></i><h4>Mais de 15 mil sabores</h4><p>Os líquidos podem ter sabores que atraem jovens.</p></div>
+        <div class="curio-card"><i class="fas fa-child"></i><h4>3 a cada 10 jovens</h4><p>Já experimentou vape na adolescência.</p></div>
+        <div class="curio-card"><i class="fas fa-skull"></i><h4>EVALI</h4><p>Lesão pulmonar associada ao uso de vape.</p></div>
+        <div class="curio-card"><i class="fas fa-globe"></i><h4>Proibido em 30+ países</h4><p>Restrições severas em diversas nações.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCLUSÃO -->
+  <section style="background: #111b32;">
+    <div class="container" data-aos="fade-up">
+      <div class="glass" style="padding: 2.8rem 2.5rem;">
+        <h2 style="font-size: 2rem;"><i class="fas fa-check-circle" style="color: #7C3AED; margin-right: 14px;"></i>Conclusão</h2>
+        <p style="line-height: 1.7; font-size: 1.1rem; color: #e2e8f0; margin-top: 0.8rem;">
+          Com base nas pesquisas realizadas, concluímos que o vape pode causar dependência, problemas respiratórios e impactos negativos na saúde física e mental dos adolescentes. 
+          O projeto permitiu compreender melhor esses riscos e mostrar a importância da prevenção. Assim, reforçamos que a informação e a conscientização são fundamentais para ajudar os jovens a fazer escolhas mais seguras para sua saúde.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem 2rem; font-size: 1rem; color: #94a3b8;">
+        <span><i class="fas fa-user-graduate"></i> Raphael Carpes</span>
+        <span><i class="fas fa-user-graduate"></i> Renan Martins</span>
+        <span><i class="fas fa-user-graduate"></i> Yan Neves</span>
+        <span><i class="fas fa-user-graduate"></i> Victor Márcio</span>
+        <span><i class="fas fa-user-graduate"></i> Richard Rocha</span>
+      </div>
+      <div style="margin-top: 1rem; color: #64748b; letter-spacing: 0.5px;">
+        <i class="fas fa-school"></i> EEB Irma Maria Teresa · Feira de Ciências
+      </div>
+      <div style="margin-top: 1.2rem; font-size: 0.8rem; color: #475569;">
+        <i class="fas fa-vial"></i> Projeto de conscientização · 2026
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ once: true, duration: 700, offset: 40 });
+
+    // Partículas (canvas simples)
+    (function particles() {
+      const canvas = document.getElementById('particles-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let w, h;
+      function resize() {
+        w = canvas.parentElement.clientWidth;
+        h = canvas.parentElement.clientHeight;
+        canvas.width = w;
+        canvas.height = h;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      const particles = [];
+      const count = 60;
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 3 + 1.2,
+          dx: (Math.random() - 0.5) * 0.5,
+          dy: (Math.random() - 0.5) * 0.5,
+          color: `hsla(${220 + Math.random() * 40}, 70%, 60%, ${0.2 + Math.random() * 0.3})`
+        });
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        for (let p of particles) {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.fill();
+          p.x += p.dx;
+          p.y += p.dy;
+          if (p.x < 0 || p.x > w) p.dx *= -1;
+          if (p.y < 0 || p.y > h) p.dy *= -1;
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+
+    // Gráficos Chart.js
+    (function charts() {
+      const ctx1 = document.getElementById('chart1')?.getContext('2d');
+      const ctx2 = document.getElementById('chart2')?.getContext('2d');
+      const ctx3 = document.getElementById('chart3')?.getContext('2d');
+
+      if (ctx1) {
+        new Chart(ctx1, {
+          type: 'bar',
+          data: {
+            labels: ['2018', '2020', '2022', '2024'],
+            datasets: [{
+              label: 'Uso entre adolescentes (%)',
+              data: [8, 14, 22, 31],
+              backgroundColor: ['#2563EB', '#7C3AED', '#2563EB', '#7C3AED'],
+              borderRadius: 10,
+            }]
+          },
+          options: { responsive: true, plugins: { legend: { labels: { color: '#cbd5e1' } } }, scales: { y: { beginAtZero: true, ticks: { color: '#94a3b8' } }, x: { ticks: { color: '#94a3b8' } } } }
+        });
+      }
+      if (ctx2) {
+        new Chart(ctx2, {
+          type: 'doughnut',
+          data: {
+            labels: ['Com nicotina', 'Sem nicotina'],
+            datasets: [{
+              data: [78, 22],
+              backgroundColor: ['#7C3AED', '#2563EB'],
+              borderWidth: 0
+            }]
+          },
+          options: { responsive: true, plugins: { legend: { labels: { color: '#cbd5e1' } } } }
+        });
+      }
+      if (ctx3) {
+        new Chart(ctx3, {
+          type: 'line',
+          data: {
+            labels: ['2019', '2020', '2021', '2022', '2023'],
+            datasets: [{
+              label: 'Casos de dependência',
+              data: [163, 19, 27, 40, 56],
+              borderColor: '#7C3AED',
+              backgroundColor: 'rgba(124, 58, 237, 0.1)',
+              tension: 0.3,
+              fill: true,
+              pointBackgroundColor: '#2563EB'
+            }]
+          },
+          options: { responsive: true, plugins: { legend: { labels: { color: '#cbd5e1' } } }, scales: { y: { beginAtZero: true, ticks: { color: '#94a3b8' } }, x: { ticks: { color: '#94a3b8' } } } }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
