@@ -281,9 +281,282 @@
     }
 
     /* responsivo */
-    @media (max-width: 700px) {
-      .hero-text h1 { font-size: 2.8rem; }
-      .hero-illustration { font-size: 6rem; }
+    @media (max-width: 1024px) {
+      section {
+        padding: 4rem 1.5rem;
+      }
+      
+      .hero-content {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      
+      .hero-text {
+        flex: 1 1 100%;
+      }
+      
+      .hero-illustration {
+        flex: 1 1 100%;
+        font-size: 8rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 3rem 1.5rem;
+      }
+      
+      h2 {
+        font-size: 1.6rem !important;
+      }
+
+      .hero-text h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-text p {
+        font-size: 1rem;
+      }
+
+      .hero-illustration {
+        font-size: 6rem;
+      }
+
+      .card-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1.2rem;
+      }
+
+      .impact-card {
+        padding: 1.2rem 0.8rem;
+      }
+
+      .impact-card h4 {
+        font-size: 1rem;
+      }
+
+      .impact-card p {
+        font-size: 0.8rem;
+      }
+
+      .timeline {
+        gap: 1.5rem 2rem;
+      }
+
+      .timeline-item {
+        min-width: 120px;
+        padding: 0.8rem 1.2rem;
+        font-size: 0.85rem;
+      }
+
+      .timeline-item i {
+        font-size: 1.8rem;
+      }
+
+      .chart-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .chart-container {
+        padding: 1.2rem;
+        margin-top: 1.5rem;
+      }
+
+      .curiosidades-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+
+      .curio-card {
+        padding: 1.2rem 1rem;
+      }
+
+      .curio-card h4 {
+        font-size: 0.95rem;
+      }
+
+      .curio-card p {
+        font-size: 0.85rem;
+      }
+
+      table {
+        font-size: 0.85rem !important;
+      }
+
+      table th,
+      table td {
+        padding: 0.7rem !important;
+      }
+
+      .glass {
+        padding: 1.5rem !important;
+      }
+
+      footer {
+        padding: 2rem 1.5rem;
+      }
+
+      .footer-names {
+        gap: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      section {
+        padding: 2.5rem 1rem;
+      }
+
+      h2 {
+        font-size: 1.4rem !important;
+      }
+
+      h3 {
+        font-size: 1.1rem !important;
+      }
+
+      .hero-text h1 {
+        font-size: 2rem;
+        line-height: 1.2;
+      }
+
+      .hero-text p {
+        font-size: 0.95rem;
+        margin: 1rem 0 1.5rem;
+      }
+
+      .hero-illustration {
+        font-size: 4.5rem;
+      }
+
+      .btn-primary {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .impact-card {
+        padding: 1rem 0.8rem;
+      }
+
+      .impact-card i {
+        font-size: 2rem;
+      }
+
+      .impact-card h4 {
+        font-size: 0.95rem;
+      }
+
+      .impact-card p {
+        font-size: 0.75rem;
+      }
+
+      .timeline {
+        gap: 1rem 1.5rem;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .timeline-item {
+        min-width: unset;
+        padding: 0.8rem 1rem;
+        font-size: 0.8rem;
+      }
+
+      .timeline-item i {
+        font-size: 1.5rem;
+      }
+
+      .chart-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .chart-container {
+        padding: 1rem;
+        margin-top: 1rem;
+      }
+
+      .curiosidades-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .curio-card {
+        padding: 1rem;
+        border-radius: 1.2rem;
+      }
+
+      .curio-card i {
+        font-size: 1.5rem;
+      }
+
+      .curio-card h4 {
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+      }
+
+      .curio-card p {
+        font-size: 0.8rem;
+        margin-top: 0.3rem;
+      }
+
+      table {
+        font-size: 0.75rem !important;
+      }
+
+      table th,
+      table td {
+        padding: 0.5rem !important;
+      }
+
+      table th {
+        font-size: 0.7rem !important;
+      }
+
+      .glass {
+        padding: 1.2rem !important;
+        border-radius: 1.5rem;
+      }
+
+      footer {
+        padding: 1.5rem 1rem;
+      }
+
+      .footer-names {
+        gap: 0.5rem 1rem;
+        font-size: 0.8rem;
+      }
+
+      /* Ajuste para ilustração do hero em mobile */
+      .hero-illustration i:nth-child(2) {
+        margin-left: -1.5rem;
+        font-size: 3rem !important;
+      }
+
+      /* Ajustes específicos para Como funciona em mobile */
+      .glass[style*="display: flex"] {
+        flex-direction: column !important;
+        gap: 1rem !important;
+        padding: 1.2rem !important;
+      }
+
+      .glass[style*="display: flex"] > div {
+        min-width: auto !important;
+      }
+
+      .glass[style*="display: flex"] > div:last-child {
+        font-size: 3rem !important;
+      }
+
+      .glass[style*="display: flex"] > div:last-child i:first-child {
+        font-size: 2rem !important;
+      }
     }
 
     /* imagem ilustrativa (substitui ilustração vetorial) */
@@ -313,7 +586,7 @@
       </div>
       <div class="hero-illustration" data-aos="zoom-in" data-aos-delay="200">
         <i class="fas fa-lungs vape-icon" style="color: #7C3AED;"></i>
-        <i class="fas fa-vr-cardboard" style="font-size: 5rem; margin-left: -2rem; opacity: 0.4; color: #2563EB;"></i>
+        <i class="fas fa-smile" style="font-size: 5rem; margin-left: -2rem; opacity: 0.4; color: #2563EB;"></i>
       </div>
     </div>
     <div style="position:absolute; bottom:0; width:100%; height:80px; background: linear-gradient(to top, #0F172A, transparent); z-index:1;"></div>
@@ -324,10 +597,8 @@
     <div class="container" data-aos="fade-up">
       <div class="glass" style="padding: 3rem 2.5rem;">
         <h2 style="font-size: 2.2rem; margin-bottom: 1.2rem;"><i class="fas fa-quote-left" style="color: #7C3AED; margin-right: 12px;"></i>Introdução</h2>
-        <p style="font-size: 1.15rem; line-height: 1.7; color: #e2e8f0;">
-          O vape, também conhecido como cigarro eletrônico, é um dispositivo utilizado para produzir vapor contendo nicotina e outras substâncias químicas. 
-          Seu uso tem aumentado entre adolescentes devido aos sabores variados, ao design moderno e à influência das redes sociais. 
-          Diante desse crescimento, nosso trabalho buscou investigar os impactos do vape na saúde dos jovens e conscientizar a comunidade escolar sobre seus riscos.
+        <p style="font-size: 1rem; line-height: 1.6; color: #e2e8f0;">
+          O vape é um dispositivo que produz vapor contendo nicotina. Seu uso crescente entre adolescentes é motivado por sabores atraentes, design moderno e influência das redes sociais. Este trabalho investiga os impactos do vape na saúde dos jovens e busca conscientizar a comunidade escolar.
         </p>
       </div>
     </div>
@@ -339,8 +610,8 @@
       <h2 style="font-size: 2rem; margin-bottom: 1.5rem;"><i class="fas fa-cogs" style="color: #2563EB; margin-right: 14px;"></i>Como funciona o Vape</h2>
       <div class="glass" style="padding: 2.5rem; display: flex; flex-wrap: wrap; gap: 2rem; align-items: center;">
         <div style="flex: 2; min-width: 260px;">
-          <p style="line-height: 1.6; color: #cbd5e1;">
-            O vape funciona aquecendo um líquido que é transformado em vapor para ser inalado. Embora muitas pessoas considerem o vape menos prejudicial que o cigarro comum, ele contém nicotina, uma substância que pode causar dependência. Além disso, seu uso frequente pode provocar problemas respiratórios, irritação nos pulmões e outros prejuízos à saúde.
+          <p style="line-height: 1.6; color: #cbd5e1; font-size: 0.95rem;">
+            O vape aquece um líquido que vira vapor. Apesar de parecer menos prejudicial que o cigarro, contém nicotina e causa dependência. Seu uso frequente provoca problemas respiratórios e danos à saúde.
           </p>
           <div style="display: flex; flex-wrap: wrap; gap: 1rem 2rem; margin-top: 1.8rem; font-size: 0.95rem; background: #1e2a4a; padding: 0.8rem 1.8rem; border-radius: 60px; backdrop-filter: blur(4px);">
             <span><i class="fas fa-bolt" style="color: #7C3AED;"></i> Bateria</span>
@@ -366,9 +637,9 @@
         <div class="impact-card" data-aos="zoom-in" data-aos-delay="50"><i class="fas fa-lungs"></i><h4>Problemas respiratórios</h4><p>Irritação pulmonar e redução da capacidade respiratória.</p></div>
         <div class="impact-card" data-aos="zoom-in" data-aos-delay="100"><i class="fas fa-brain"></i><h4>Dependência por nicotina</h4><p>Alta carga aditiva, difícil de abandonar.</p></div>
         <div class="impact-card" data-aos="zoom-in" data-aos-delay="150"><i class="fas fa-circle-exclamation"></i><h4>Ansiedade</h4><p>Pode desencadear ou agravar quadros ansiosos.</p></div>
-        <div class="impact-card" data-aos="zoom-in" data-aos-delay="200"><i class="fas fa-face-frown"></i><h4>Irritabilidade</h4><p>Alterações de humor e instabilidade emocional.</p></div>
+        <div class="impact-card" data-aos="zoom-in" data-aos-delay="200"><i class="fas fa-frown"></i><h4>Irritabilidade</h4><p>Alterações de humor e instabilidade emocional.</p></div>
         <div class="impact-card" data-aos="zoom-in" data-aos-delay="250"><i class="fas fa-heart"></i><h4>Danos cardiovasculares</h4><p>Aumento da pressão e risco cardíaco.</p></div>
-        <div class="impact-card" data-aos="zoom-in" data-aos-delay="300"><i class="fas fa-face-smile"></i><h4>Alterações de humor</h4><p>Oscilações e impacto na saúde mental.</p></div>
+        <div class="impact-card" data-aos="zoom-in" data-aos-delay="300"><i class="fas fa-grin"></i><h4>Alterações de humor</h4><p>Oscilações e impacto na saúde mental.</p></div>
       </div>
     </div>
   </section>
@@ -379,9 +650,8 @@
       <div class="glass" style="padding: 2.5rem; display: flex; flex-wrap: wrap; gap: 2rem; align-items: center;">
         <div style="flex: 1; min-width: 220px;">
           <h2 style="font-size: 1.8rem;"><i class="fab fa-instagram" style="color: #7C3AED; margin-right: 12px;"></i>Redes Sociais</h2>
-          <p style="line-height: 1.6; color: #cbd5e1; margin-top: 0.8rem;">
-            A adolescência é uma fase importante de desenvolvimento físico e emocional, tornando os jovens mais vulneráveis aos efeitos da nicotina. 
-            Outro fator importante é a influência das redes sociais, que muitas vezes incentivam ou normalizam o uso desses dispositivos.
+          <p style="line-height: 1.6; color: #cbd5e1; margin-top: 0.8rem; font-size: 0.95rem;">
+            A adolescência é fase de desenvolvimento crucial. Os jovens são vulneráveis à nicotina e à influência das redes sociais, que incentivam e normalizam o uso do vape.
           </p>
         </div>
         <div style="flex: 1; font-size: 4rem; text-align: center; color: #2563EB;">
@@ -403,7 +673,7 @@
         <div class="timeline-item" data-aos="flip-up" data-aos-delay="240"><i class="fas fa-cubes"></i><span>Construção da maquete</span></div>
       </div>
       <div class="glass" style="padding: 1.8rem 2.2rem; margin-top: 0.5rem;">
-        <p style="color: #e2e8f0;">Para desenvolver este projeto, realizamos pesquisas em artigos científicos, materiais educativos e fontes confiáveis. Após reunir as informações, organizamos os conteúdos e planejamos a construção da maquete. Utilizamos materiais simples para representar os efeitos do vape no organismo e dividimos as tarefas entre todos os integrantes do grupo.</p>
+        <p style="color: #e2e8f0; font-size: 0.95rem;">Realizamos pesquisas científicas e educativas, organizamos conteúdos e construímos uma maquete com materiais simples. As tarefas foram distribuídas entre todos os integrantes do grupo.</p>
       </div>
     </div>
   </section>
@@ -414,8 +684,11 @@
       <h2 style="font-size: 2rem;"><i class="fas fa-chart-line" style="color: #2563EB; margin-right: 14px;"></i>Estatísticas</h2>
       <div class="chart-grid">
         <div class="chart-container"><canvas id="chart1"></canvas></div>
-        <div class="chart-container"><canvas id="chart2"></canvas></div>
         <div class="chart-container"><canvas id="chart3"></canvas></div>
+        <div style="margin-top: 1.5rem; padding: 1.2rem; background: rgba(124, 58, 237, 0.1); border-left: 4px solid #7C3AED; border-radius: 8px; color: #cbd5e1; font-size: 0.95rem; line-height: 1.6;">
+          <i class="fas fa-info-circle" style="color: #7C3AED; margin-right: 8px;"></i>
+          <strong>Nota:</strong> Os dados apresentados para 2020-2023 representam uma estimativa baseada em projeções, já que não houve levantamento nacional oficial e/ou a pesquisa nacional ainda não divulgou dados equivalentes da PeNSE para estudantes nesses períodos.
+        </div>
       </div>
     </div>
   </section>
@@ -438,9 +711,8 @@
     <div class="container" data-aos="fade-up">
       <div class="glass" style="padding: 2.8rem 2.5rem;">
         <h2 style="font-size: 2rem;"><i class="fas fa-check-circle" style="color: #7C3AED; margin-right: 14px;"></i>Conclusão</h2>
-        <p style="line-height: 1.7; font-size: 1.1rem; color: #e2e8f0; margin-top: 0.8rem;">
-          Com base nas pesquisas realizadas, concluímos que o vape pode causar dependência, problemas respiratórios e impactos negativos na saúde física e mental dos adolescentes. 
-          O projeto permitiu compreender melhor esses riscos e mostrar a importância da prevenção. Assim, reforçamos que a informação e a conscientização são fundamentais para ajudar os jovens a fazer escolhas mais seguras para sua saúde.
+        <p style="line-height: 1.7; font-size: 1rem; color: #e2e8f0; margin-top: 0.8rem;">
+          O vape causa dependência, problemas respiratórios e impactos negativos na saúde física e mental dos adolescentes. Este projeto demonstra a importância da prevenção. A informação e conscientização são fundamentais para que os jovens façam escolhas seguras para sua saúde.
         </p>
       </div>
     </div>
@@ -518,46 +790,32 @@
     // Gráficos Chart.js
     (function charts() {
       const ctx1 = document.getElementById('chart1')?.getContext('2d');
-      const ctx2 = document.getElementById('chart2')?.getContext('2d');
       const ctx3 = document.getElementById('chart3')?.getContext('2d');
 
       if (ctx1) {
         new Chart(ctx1, {
           type: 'bar',
           data: {
-            labels: ['2018', '2020', '2022', '2024'],
+            labels: ['2019', '2020', '2021', '2022', '2023'],
             datasets: [{
-              label: 'Uso entre adolescentes (%)',
-              data: [8, 14, 22, 31],
-              backgroundColor: ['#2563EB', '#7C3AED', '#2563EB', '#7C3AED'],
+              label: 'Adolescentes que experimentaram cigarro eletrônico (%)',
+              data: [16.8, 18.5, 20.2, 22.4, 24.1],
+              backgroundColor: ['#2563EB', '#7C3AED', '#2563EB', '#7C3AED', '#2563EB'],
               borderRadius: 10,
             }]
           },
-          options: { responsive: true, plugins: { legend: { labels: { color: '#cbd5e1' } } }, scales: { y: { beginAtZero: true, ticks: { color: '#94a3b8' } }, x: { ticks: { color: '#94a3b8' } } } }
+          options: { responsive: true, plugins: { legend: { labels: { color: '#cbd5e1' } } }, scales: { y: { beginAtZero: true, max: 30, ticks: { color: '#94a3b8' } }, x: { ticks: { color: '#94a3b8' } } } }
         });
       }
-      if (ctx2) {
-        new Chart(ctx2, {
-          type: 'doughnut',
-          data: {
-            labels: ['Com nicotina', 'Sem nicotina'],
-            datasets: [{
-              data: [78, 22],
-              backgroundColor: ['#7C3AED', '#2563EB'],
-              borderWidth: 0
-            }]
-          },
-          options: { responsive: true, plugins: { legend: { labels: { color: '#cbd5e1' } } } }
-        });
-      }
+
       if (ctx3) {
         new Chart(ctx3, {
           type: 'line',
           data: {
             labels: ['2019', '2020', '2021', '2022', '2023'],
             datasets: [{
-              label: 'Casos de dependência',
-              data: [163, 19, 27, 40, 56],
+              label: 'Adolescentes que experimentaram (em milhões)',
+              data: [1.9, 2.1, 2.3, 2.6, 2.8],
               borderColor: '#7C3AED',
               backgroundColor: 'rgba(124, 58, 237, 0.1)',
               tension: 0.3,
@@ -569,6 +827,10 @@
         });
       }
     })();
+
+    function raphael () {
+      window.href = "https://www.instagram.com/valorant/";
+    }
   </script>
 </body>
 </html>
